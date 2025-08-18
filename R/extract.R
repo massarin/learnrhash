@@ -35,18 +35,17 @@ fix_empty_state_obj = function(obj) {
 #' @export
 extract_hash = function(df, hash = "hash") {
   d = df %>%
-    dplyr::rename(hash = .data[[hash]]) %>%
+    dplyr::rename(hash = all_of(hash)) %>%
     dplyr::mutate(
-      hash = lapply(.data[[hash]], learnrhash::decode_obj),
-      hash = lapply(.data[[hash]], fix_empty_state_obj)
+      hash = lapply(hash, learnrhash::decode_obj),
+      hash = lapply(hash, fix_empty_state_obj)
     ) %>%
-    tidyr::unnest_longer(.data[[hash]]) %>%
-    tidyr::unnest_wider(.data[[hash]]) %>%
-    dplyr::relocate(.data[["label"]], .before="type")
-
+    tidyr::unnest_longer(hash) %>%
+    tidyr::unnest_wider(hash)
+  
   if (is.null(d[["data"]]))
     d$data = list(NULL)
-
+  
   d
 }
 
