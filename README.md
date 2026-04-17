@@ -1,4 +1,5 @@
 
+
 # learnrhash
 
 <!-- badges: start -->
@@ -49,8 +50,8 @@ the necessary shiny logic and ui inserted, as shown below.
 
 ![Encode solutions](man/figures/encode.gif)
 
-In the example above a url for <http://localhost> given, this value can
-be replaced with whatever link you would like to use for submission. All
+In the example above a url for http://localhost given, this value can be
+replaced with whatever link you would like to use for submission. All
 the students will need to do is to paste the generated hash into a text
 response field on whatever web form you choose to use.
 
@@ -66,11 +67,11 @@ example = readRDS(system.file("example.rds", package="learnrhash"))
 example
 ```
 
-    ## # A tibble: 2 × 3
-    ##   student student_id hash                                                       
-    ##   <chr>        <dbl> <chr>                                                      
-    ## 1 Colin        20000 QlpoOTFBWSZTWeVuJ2oAA0d/gP/7aAhoC7BViyIOyr/v/+BAAcACsAS7C1…
-    ## 2 Mine         10000 QlpoOTFBWSZTWYeyPVYAA0x/gP/7aAhoC7BVgyIOyr/v/+BAAcACsAdqC1…
+    # A tibble: 2 × 3
+      student student_id hash                                                       
+      <chr>        <dbl> <chr>                                                      
+    1 Colin        20000 QlpoOTFBWSZTWeVuJ2oAA0d/gP/7aAhoC7BViyIOyr/v/+BAAcACsAS7C1…
+    2 Mine         10000 QlpoOTFBWSZTWYeyPVYAA0x/gP/7aAhoC7BVgyIOyr/v/+BAAcACsAdqC1…
 
 Currently the package provides two functions for extracting question
 solutions and exercise solutions from these hashed data, for both
@@ -83,19 +84,19 @@ To extract the all submissions use,
 learnrhash::extract_hash(example)
 ```
 
-    ## # A tibble: 10 × 5
-    ##    student student_id id            type                data            
-    ##    <chr>        <dbl> <chr>         <chr>               <list>          
-    ##  1 Colin        20000 code          exercise_submission <named list [4]>
-    ##  2 Colin        20000 code2         exercise_submission <named list [4]>
-    ##  3 Colin        20000 details       question_submission <named list [4]>
-    ##  4 Colin        20000 not_a_planets question_submission <named list [4]>
-    ##  5 Colin        20000 planets       question_submission <named list [4]>
-    ##  6 Mine         10000 code          exercise_submission <named list [4]>
-    ##  7 Mine         10000 code2         exercise_submission <named list [4]>
-    ##  8 Mine         10000 details       question_submission <named list [4]>
-    ##  9 Mine         10000 not_a_planets question_submission <named list [4]>
-    ## 10 Mine         10000 planets       question_submission <named list [4]>
+    # A tibble: 10 × 5
+       student student_id id            type                data            
+       <chr>        <dbl> <chr>         <chr>               <list>          
+     1 Colin        20000 code          exercise_submission <named list [4]>
+     2 Colin        20000 code2         exercise_submission <named list [4]>
+     3 Colin        20000 details       question_submission <named list [4]>
+     4 Colin        20000 not_a_planets question_submission <named list [4]>
+     5 Colin        20000 planets       question_submission <named list [4]>
+     6 Mine         10000 code          exercise_submission <named list [4]>
+     7 Mine         10000 code2         exercise_submission <named list [4]>
+     8 Mine         10000 details       question_submission <named list [4]>
+     9 Mine         10000 not_a_planets question_submission <named list [4]>
+    10 Mine         10000 planets       question_submission <named list [4]>
 
 and to get just the exercises,
 
@@ -103,13 +104,13 @@ and to get just the exercises,
 learnrhash::extract_exercises(example)
 ```
 
-    ## # A tibble: 4 × 5
-    ##   student student_id id    type                data            
-    ##   <chr>        <dbl> <chr> <chr>               <list>          
-    ## 1 Colin        20000 code  exercise_submission <named list [4]>
-    ## 2 Colin        20000 code2 exercise_submission <named list [4]>
-    ## 3 Mine         10000 code  exercise_submission <named list [4]>
-    ## 4 Mine         10000 code2 exercise_submission <named list [4]>
+    # A tibble: 4 × 5
+      student student_id id    type                data            
+      <chr>        <dbl> <chr> <chr>               <list>          
+    1 Colin        20000 code  exercise_submission <named list [4]>
+    2 Colin        20000 code2 exercise_submission <named list [4]>
+    3 Mine         10000 code  exercise_submission <named list [4]>
+    4 Mine         10000 code2 exercise_submission <named list [4]>
 
 or questions,
 
@@ -117,15 +118,15 @@ or questions,
 learnrhash::extract_questions(example)
 ```
 
-    ## # A tibble: 6 × 5
-    ##   student student_id id            type                data            
-    ##   <chr>        <dbl> <chr>         <chr>               <list>          
-    ## 1 Colin        20000 details       question_submission <named list [4]>
-    ## 2 Colin        20000 not_a_planets question_submission <named list [4]>
-    ## 3 Colin        20000 planets       question_submission <named list [4]>
-    ## 4 Mine         10000 details       question_submission <named list [4]>
-    ## 5 Mine         10000 not_a_planets question_submission <named list [4]>
-    ## 6 Mine         10000 planets       question_submission <named list [4]>
+    # A tibble: 6 × 5
+      student student_id id            type                data            
+      <chr>        <dbl> <chr>         <chr>               <list>          
+    1 Colin        20000 details       question_submission <named list [4]>
+    2 Colin        20000 not_a_planets question_submission <named list [4]>
+    3 Colin        20000 planets       question_submission <named list [4]>
+    4 Mine         10000 details       question_submission <named list [4]>
+    5 Mine         10000 not_a_planets question_submission <named list [4]>
+    6 Mine         10000 planets       question_submission <named list [4]>
 
 If you would like to experiment with this decoding and extraction while
 writing your tutorial you can also include decoding logic and ui
