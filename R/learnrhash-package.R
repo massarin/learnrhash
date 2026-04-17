@@ -4,3 +4,5 @@ NULL
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
+
+utils::globalVariables("input")
