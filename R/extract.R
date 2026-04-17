@@ -6,7 +6,7 @@
 #' @description
 #' The following are helper functions for extracting data from hashed learnr solutions.
 #'
-#' * `extract_hash` - extracts the contents of the hashes into label, type, answer, correct, and timestamp columns
+#' * `extract_hash` - extracts the contents of the hashes into id, type, and data columns
 #'
 #' * `extract_questions` - extracts the contents of the hashes for answered questions.
 #'
@@ -35,17 +35,18 @@ fix_empty_state_obj = function(obj) {
 #' @export
 extract_hash = function(df, hash = "hash") {
   d = df %>%
-    dplyr::rename(hash = all_of(hash)) %>%
+    dplyr::rename(hash = dplyr::all_of(hash)) %>%
     dplyr::mutate(
       hash = lapply(hash, learnrhash::decode_obj),
       hash = lapply(hash, fix_empty_state_obj)
     ) %>%
     tidyr::unnest_longer(hash) %>%
-    tidyr::unnest_wider(hash)
-  
+    tidyr::unnest_wider(hash) %>%
+    dplyr::relocate(dplyr::any_of("id"), .before = dplyr::any_of("type"))
+
   if (is.null(d[["data"]]))
     d$data = list(NULL)
-  
+
   d
 }
 
@@ -53,12 +54,12 @@ extract_hash = function(df, hash = "hash") {
 #' @export
 extract_exercises = function(df, hash = "hash") {
   extract_hash(df, hash) %>%
-    dplyr::filter(.data[["type"]] == "exercise")
+    dplyr::filter(.data[["type"]] == "exercise_submission")
 }
 
 #' @rdname extract
 #' @export
 extract_questions = function(df, hash = "hash") {
   extract_hash(df, hash) %>%
-    dplyr::filter(.data[["type"]] == "question")
+    dplyr::filter(.data[["type"]] == "question_submission")
 }

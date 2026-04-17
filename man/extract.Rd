@@ -21,7 +21,7 @@ extract_questions(df, hash = "hash")
 \description{
 The following are helper functions for extracting data from hashed learnr solutions.
 \itemize{
-\item \code{extract_hash} - extracts the contents of the hashes into label, type, answer, correct, and timestamp columns
+\item \code{extract_hash} - extracts the contents of the hashes into id, type, and data columns
 \item \code{extract_questions} - extracts the contents of the hashes for answered questions.
 \item \code{extract_exercises} - extracts the contents of the hashes for answered exercises.
 }
